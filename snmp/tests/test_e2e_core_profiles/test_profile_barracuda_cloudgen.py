@@ -39,13 +39,13 @@ def test_e2e_profile_barracuda_cloudgen(dd_agent_check):
     # --- TEST METRICS ---
     assert_common_metrics(aggregator, common_tags)
 
-    aggregator.assert_metric('snmp.vpnUsers', metric_type=aggregator.GAUGE, tags=common_tags)
+    aggregator.assert_metric('snmp.phion.vpnUsers', metric_type=aggregator.GAUGE, tags=common_tags)
     tag_rows = [
         ['box_service_name:Jaded oxen their driving acted acted oxen', 'box_service_state:started'],
         ['box_service_name:zombies Jaded', 'box_service_state:blocked'],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.boxServices', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.boxServices', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     tag_rows = [
         ['connector_name:oxen their forward'],
@@ -53,64 +53,68 @@ def test_e2e_profile_barracuda_cloudgen(dd_agent_check):
     ]
     for tag_row in tag_rows:
         aggregator.assert_metric(
-            'snmp.trafficShapeClass1Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass1Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass1Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass1Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass1Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass1Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass2Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass2Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass2Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass2Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass2Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass2Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass3Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass3Drop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass3Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass3Pakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeClass3Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeClass3Total', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeNoDelayDrop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeNoDelayDrop', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeNoDelayPakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeNoDelayPakets', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
         aggregator.assert_metric(
-            'snmp.trafficShapeNoDelayTotal', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+            'snmp.phion.trafficShapeNoDelayTotal', metric_type=aggregator.COUNT, tags=common_tags + tag_row
         )
-        aggregator.assert_metric('snmp.trafficShapeRate', metric_type=aggregator.COUNT, tags=common_tags + tag_row)
-        aggregator.assert_metric('snmp.trafficShapeSessions', metric_type=aggregator.COUNT, tags=common_tags + tag_row)
+        aggregator.assert_metric(
+            'snmp.phion.trafficShapeRate', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+        )
+        aggregator.assert_metric(
+            'snmp.phion.trafficShapeSessions', metric_type=aggregator.COUNT, tags=common_tags + tag_row
+        )
 
     tag_rows = [
         ['hw_sensor_name:driving Jaded forward but', 'hw_sensor_type:fan'],
         ['hw_sensor_name:oxen acted quaintly', 'hw_sensor_type:voltage'],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.hwSensorValue', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.hwSensorValue', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     tag_rows = [
         ['vpn_name:Jaded driving driving oxen zombies quaintly forward but', 'vpn_state:down-disabled'],
         ['vpn_name:quaintly zombies kept driving oxen acted zombies acted kept', 'vpn_state:down-disabled'],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.vpnTunnels', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.vpnTunnels', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     tag_rows = [
         ['bgp_neighbor_address:Jaded driving oxen oxen kept Jaded kept'],
         ['bgp_neighbor_address:zombies driving quaintly but forward kept zombies'],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.bgpNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.bgpNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     tag_rows = [
         [
@@ -127,7 +131,7 @@ def test_e2e_profile_barracuda_cloudgen(dd_agent_check):
         ],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.ospfNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.ospfNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     tag_rows = [
         ['rip_neighbor_address:acted but', 'rip_neighbor_state:oxen zombies kept forward'],
@@ -137,7 +141,7 @@ def test_e2e_profile_barracuda_cloudgen(dd_agent_check):
         ],
     ]
     for tag_row in tag_rows:
-        aggregator.assert_metric('snmp.ripNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
+        aggregator.assert_metric('snmp.phion.ripNeighbors', metric_type=aggregator.GAUGE, tags=common_tags + tag_row)
 
     # --- TEST METADATA ---
     device = {
