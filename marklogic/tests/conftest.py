@@ -42,7 +42,7 @@ def dd_environment():
 def setup_admin_user():
     # type: () -> None
     # From https://docs.marklogic.com/10.0/guide/admin-api/cluster
-    # Reset admin user password (usefull for cluster setup)
+    # Reset admin user password (useful for cluster setup)
     requests.post(
         'http://localhost:8001/admin/v1/instance-admin',
         data={
